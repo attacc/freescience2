@@ -246,8 +246,6 @@ Function GetName($id)
   		id_categoria = $id";
   $this->dbms->Exec_Query($query);
   $n=$this->dbms->ReturnNum();
-	//echo " numero di ".$this->cattable." $n";
-  //Controllo presenza link
 
   if($n==0) {
   	return -1;
