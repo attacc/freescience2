@@ -17,7 +17,9 @@ if($arr == -1)
     echo " Book not found!! ";
     die;
 }
-$catname=$links->GetNameMore($arr["id_categoria"]);
+$catname=$links->GetName($arr["id_categoria"]);
+$catname2=$links->GetName($arr["cat2"]);
+
 $html = file_get_html_rn("../templates/book_template.html");
 
 $html->find('title',0)->innertext  = 'Freescience.info: '.$arr["titolo"];
@@ -26,7 +28,12 @@ $html->find('span[class=lang_php]',0)->innertext = $arr["langue"];
 $html->find('span[class=format_php]',0)->innertext = strtolower($arr["formato"]);
 if($arr["pagine"]!=0) $html->find('span[class=pages_php]',0)->innertext = $arr["pagine"];
 if($arr["year"]!=0)  $html->find('span[class=year_php]',0)->innertext = $arr["year"];
-$html->find('span[class=link_php]',0)->innertext = '<a href="'.$arr["url"].'">'.$arr["url"].'</a>';
+
+
+$cat_page=str_replace(' ', '_',trim($catname));
+$cat_page="../categories/".$cat_page.'_'.$arr["id_categoria"].".html";
+$html->find('span[class=cat1_php]',0)->innertext = '<a href='.$cat_page.'">'.$catname.'</a>';
+#$html->find('span[class=cat1_php]',0)->innertext = 'Category: <a href="'.$arr["url"].'">'.$arr["url"].'</a>';
 
 
 if($arr["linkautore"]!="") 
