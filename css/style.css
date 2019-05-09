@@ -371,7 +371,6 @@ header nav {
 		.books li figure {
 			width:129px;
 			height:129px;
-			background:url(../images/date-bg1.gif) no-repeat 0 0;
 			position:absolute;
 			left:0;
 			top:0;
@@ -385,16 +384,6 @@ header nav {
 			text-transform:uppercase;
 		}
 		
-		.books li:nth-of-type(4n+2) figure {
-			background:url(../images/date-bg2.gif) no-repeat 0 0;
-		}
-		.books li:nth-of-type(4n+3) figure {
-			background:url(../images/date-bg3.gif) no-repeat 0 0;
-		}
-		.books li:nth-of-type(4n+4) figure {
-			background:url(../images/date-bg4.gif) no-repeat 0 0;
-		}
-
 .team-list li {
 	width:100%;
 	overflow:hidden;

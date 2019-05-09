@@ -38,7 +38,13 @@ if($arr["img"]=="") {
 }
 else
 {
-  $image_html='<a href="'.$arr["url"].'"><image src="../copertine/'.$arr["img"].'"></a>';
+  if(file_exists('copertine/'.$arr["img"])) {
+     $image_html='<a href="'.$arr["url"].'"><image src="../copertine/'.$arr["img"].'"></a>';
+  }
+  else
+  {
+   $image_html='<a href="'.$arr["url"].'"><image src="../images/small_logo.png"></a>';
+  }
 }
 $html->find('span[class=image_php]',0)->innertext = $image_html;
 
@@ -61,6 +67,29 @@ else
 {
     $html->find('span[class=author_php]',0)->innertext = $arr["autore"];
 }
+$html->find('p[class=description]',0)->innertext = $arr["en"];
+
+
+
+# RELATED BOOKS
+#
+$arr2=$links->GetActive($getcampi,$arr['id_categoria'],'id_links');
+$related="";
+for($i=0;$i<count($arr2['id_links']);$i++)
+{
+    if($arr2['id_links'][$i]!=$arr['id_links'])
+    {
+        $book_name=str_replace(' ', '_',trim($arr2["titolo"][$i]));
+        $book_link=$book_name."_".$arr2["id_links"][$i].".html";
+        $related.='<li><a href="'.$book_link.'">'.$arr2['titolo'][$i].'</a></li>';
+    }
+}
+$html->find('span[class=related_php]',0)->innertext = $related;
+
+
+
+# WRITE PAGE ON DISK
+
 $book_name=str_replace(' ', '_',trim($arr["titolo"]));
 $fp = fopen('../books/'.$book_name."_".$arr["id_links"].".html", 'w');
 fwrite($fp,$html);
