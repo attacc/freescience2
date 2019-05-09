@@ -4,6 +4,10 @@ include("books.inc.php");
 include("c_links.php");
 include('simple_html_dom.php');
 
+
+if(!isset($_GET['id'])) { echo "Error not valid ID"; die; }
+
+
 if(!is_numeric($_GET['id'])) 
 { echo "Error not valid ID"; die; }
 else
@@ -28,7 +32,15 @@ $html->find('span[class=lang_php]',0)->innertext = $arr["langue"];
 $html->find('span[class=format_php]',0)->innertext = strtolower($arr["formato"]);
 if($arr["pagine"]!=0) $html->find('span[class=pages_php]',0)->innertext = $arr["pagine"];
 if($arr["year"]!=0)  $html->find('span[class=year_php]',0)->innertext = $arr["year"];
-$html->find('span[class=link_php]',0)->innertext = 'Category: <a href="'.$arr["url"].'">'.$arr["url"].'</a>';
+$html->find('span[class=link_php]',0)->innertext = '<a href="'.$arr["url"].'">'.$arr["url"].'</a>';
+if($arr["img"]=="") {
+  $image_html='<a href="'.$arr["url"].'"><image src="../images/small_logo.png"></a>';
+}
+else
+{
+  $image_html='<a href="'.$arr["url"].'"><image src="../copertine/'.$arr["img"].'"></a>';
+}
+$html->find('span[class=image_php]',0)->innertext = $image_html;
 
 
 $cat_page=str_replace(' ', '_',trim($catname));
