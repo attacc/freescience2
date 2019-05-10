@@ -38,7 +38,7 @@ if($arr["img"]=="") {
 }
 else
 {
-  if(file_exists('copertine/'.$arr["img"])) {
+  if(file_exists('../copertine/'.$arr["img"])) {
      $image_html='<a href="'.$arr["url"].'"><image src="../copertine/'.$arr["img"].'"></a>';
   }
   else
