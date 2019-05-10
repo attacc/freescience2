@@ -315,19 +315,19 @@ header nav {
 		.news li my_figure {
 			width:159px;
 			height:19px;
-			background:url(../images/date-bg3.gif); 
+			background:url(../images/date-bg4.gif); 
             background-repeat: repeat;
 /*			position:absolute;*/
 			left:0;
 			top:0; 
-			margin-bottom:3px;
+			margin-bottom:4px;
 			text-align:center;
            
-			border:3px solid #ebebeb;
+			border:1px solid #ca6f1e;
 			border-radius:4px; 
 			-moz-border-radius:4px;
 			-webkit-border-radius:4px;
-			font-size:12px;
+			font-size:14px;
 			color:#fff; 
 			text-transform:uppercase;
 		}
