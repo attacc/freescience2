@@ -300,19 +300,19 @@ header nav {
 	#content img:hover {
 		border-color:#bbb;
 	}
-	
-
-/*--- news list styles ---*/
-	.news li {
+	/*--- news list styles ---*/
+	.mynews li {
 		overflow:hidden;
 		position:relative;
 		padding:0 0 5px 10px;
 	}
-	.news li:last-child {
+	.mynews li:last-child {
 		padding-bottom:0;
 	}
+
+
 	
-		.news li my_figure {
+		.mynews li figure {
 			width:159px;
 			height:19px;
 			background:url(../images/date-bg4.gif); 
@@ -332,6 +332,15 @@ header nav {
 			text-transform:uppercase;
 		}
 
+  /*--- news list styles ---*/
+	.news li {
+		overflow:hidden;
+		position:relative;
+		padding:0 0 26px 84px;
+	}
+	.news li:last-child {
+		padding-bottom:0;
+	}
 
         .news li figure {
 			width:59px;
@@ -358,6 +367,15 @@ header nav {
 				padding-top:4px;
 			}
 		
+       	.news li:nth-of-type(4n+2) figure {
+			background:url(../images/date-bg2.gif) no-repeat 0 0;
+		}
+		.news li:nth-of-type(4n+3) figure {
+			background:url(../images/date-bg3.gif) no-repeat 0 0;
+		}
+		.news li:nth-of-type(4n+4) figure {
+			background:url(../images/date-bg4.gif) no-repeat 0 0;
+		}
 /*--- news list styles ---*/
 	.books li {
 		overflow:hidden;
