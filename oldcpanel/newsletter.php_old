@@ -1,0 +1,80 @@
+<? 
+session_start();
+include "./config.php";
+include "./pagebase.inc.php";
+include cpanel."c_links.php";
+include "./readtopics.php";
+
+$campi[]="id";
+$campi[]="data";
+$campi[]="lingua";
+$campi[]="titolo";
+$campi[]="testo";
+$campi[]="tipo";
+$campi[]="link";
+$campi[]="active";
+
+$dbms = new c_mysql;
+$dbms->ConnectSQL();
+$dbms->Set_DB("freescience");
+
+if(!isset($limit)) $limit=5;
+
+$query="SELECT ".$campi[0];
+for($i=1;$i<count($campi);$i++)
+       $query.=",".$campi[$i];
+$query.= " FROM news ORDER by id DESC LIMIT ".$limit;
+
+$dbms->Exec_Query($query);
+$n=$dbms->ReturnNum();
+ if($n == 0)
+  {
+    $arr=-1;
+  }
+  else  for($i=0;$i<$n;$i++)
+   for($j=0;$j<count($campi);$j++)
+        $arr[$campi[$j]][]=urldecode($dbms->ReturnResult($i,$campi[$j]));
+
+$topics=readtopics();
+
+$query="SELECT COUNT(*) FROM newsletter";
+$dbms->Exec_Query($query);
+$numero=$dbms->ReturnResult(0,0)+1;
+
+$testobase="<table border=0>";
+for($i=0;$i<$n;$i++)
+{
+	$testobase.="<tr><td><b>".$topics["it"][$arr["tipo"][$i]]." :</b><a href=\"".$arr['link'][$i]."\">".$arr['titolo'][$i]."</a></b>
+	<br><font size=-1> 
+   ".$arr['testo'][$i]."</font></td></tr>
+   ";
+}
+
+$nltesto='      
+
+<center><h2>* * *  FreeScience.info Newsletter Numero '.$numero.' del '.date('j-m-y').' * * *</h2> </center>     
+'.$testobase.'</table>';
+$page="<center><h2>Newsletter</h2><br>";
+$page.='<form action="invia.php" method=post>
+<input type=text name="subject" value="FreeScience.info Newsletter Numero '.$numero.'" size=80><br><br>
+<textarea name="testo" rows="50" cols="80" wrap="virtual" dir="ltr" tabindex="5">'.$nltesto.'</textarea><br>
+<b>Test Email</b> <input type="radio" name="test" value="1">
+<b>Newsletter Normale</b> <input type="radio" name="test" value="0" checked ><br>
+<br>
+<input type="submit"  value="Invia"> &nbsp;&nbsp;&nbsp;&nbsp;
+<input type="reset" value="Reset!">
+</form>
+</center>';
+$pagina=new f_template();
+$pagina->Set_Color("white");
+$pagina->Set_link("#0000cc");
+$pagina->Set_Description($description);
+$pagina->Set_Keywords(LIBRI.",".LIBRO.",".SCIENCE.",freescience,gratis,free");
+$pagina->Set_top("top.html");
+$pagina->Set_menu("menu.php");
+$pagina->Set_Page($page);
+$pagina->Set_bottom($bottom);
+$pagina->Set_Title("FreeScience - ".LIBRI);
+
+$pagina->ShowPage();
+?>

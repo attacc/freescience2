@@ -18,8 +18,12 @@ $html = file_get_html_rn("../templates/category_template.html");
 
 # WRITE PAGE ON DISK
 
-#$cat_name=str_replace(' ', '_',trim($arr["titolo"]));
 $cat_name="category";
+
+$html->find('title',0)->innertext  = 'Freescience.info: '.$cat_name;
+$html->find('div[class=cat_title]',0)->innertext  = $cat_name;
+
+
 $fp = fopen('../books/'.$cat_name."_".$arr["id_links"].".html", 'w');
 fwrite($fp,$html);
 fclose($fp);
