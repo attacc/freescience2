@@ -53,6 +53,7 @@ Function  GetSubCatShort($id_padre=-1)
  # echo "query <br>".$query."<br>";
  $n = $this->dbms->ReturnNum();
 // echo "Ci sono $n righe ";
+
 if ($n == 0)
 {
  return -1;
