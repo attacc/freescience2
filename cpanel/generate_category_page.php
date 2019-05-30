@@ -27,7 +27,7 @@ $cat_name= $links->GetName($id_cat);
 $cat_list = $links->GetSubCatShort($id_cat);
 
 $text="";
-#$text=show_cat($cat_list);
+$text=show_cat($cat_list);
 
 $html->find('title',0)->innertext  = 'Freescience.info: '.$cat_name;
 $html->find('div[class=cat_title]',0)->innertext  = $cat_name;
