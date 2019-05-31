@@ -68,16 +68,14 @@ for($i = 0;$i<$n;$i++)
  $arr["father"][] = urldecode($this->dbms->ReturnResult($i,"father"));
  }
 
-//if($this->lingua=="en") $noit=" AND langue!='it'";
-//else $noit=""; 
-$noit="";
 for($i = 0;$i<$n;$i++)
 {
 
- $query="SELECT COUNT(*) FROM ".$this->cattable."
-	where id_padre = ".$arr["id"][$i];
+# $query="SELECT COUNT(*) FROM ".$this->cattable." AS pippo where id_padre = ".$arr["id"][$i];
+ $query="SELECT * FROM ".$this->cattable." where id_padre = `".$arr["id"][$i]."`";
+ echo $query;
  $this->dbms->Exec_Query($query);
-  $arr["figli"][] = $this->dbms->ReturnResult(0,0);
+ $arr["figli"][] =  $this->dbms->NumRows();
 }
 
 return $arr;

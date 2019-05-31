@@ -89,6 +89,12 @@ Function ReturnNextObject()
 return mysqli_fetch_object($this->result);
 }
 
+Function NumRows()
+{
+    echo " Number di righe ".mysqli_num_rows($this->result);
+    return mysqli_num_rows($this->result);
+}
+
 } //fine classe
 } //fine if
 

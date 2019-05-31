@@ -459,7 +459,7 @@ header nav {
   float: left;
   width: 30%;
   padding: 10px;
-  height: 20px; /* Should be removed. Only for demonstration */
+  height: 35px; /* Should be removed. Only for demonstration */
   vertical-align: middle; 
 }
 
